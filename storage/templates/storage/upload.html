@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload file</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href={% url 'storage:result' %}>find your result</a>
+                </li>
+                <li>
+                    <a href="#how_it_works">How it works.</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div>
+        <form action={% url 'storage:ufile' %} enctype="multipart/form-data" method="post" > 
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit">
+        </form>
+    </div>
+    <div id="how_it_works">
+        <p>upload result as a .xls file. 
+        <strong>important:</strong>
+        Student and rollno these two columns must be present in the file.</p>
+        <img src="{% static 'storage/1.png' %}" alt="screenshot of excel with Student and rollno highlighted.">
+
+
+
+    </div>
+    
+</body>
+</html>

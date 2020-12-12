@@ -1,0 +1,7 @@
+<form method="POST" action="{% url 'storage:result' %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+    
+    
+</form>
