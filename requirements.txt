@@ -32,7 +32,9 @@ decorator==4.4.2
 defusedxml==0.6.0
 diff-match-patch @ file:///tmp/build/80754af9/diff-match-patch_1594828741838/work
 distlib==0.3.0
+dj-database-url==0.5.0
 Django==3.0.3
+django-heroku==0.3.1
 djangorestframework==3.12.1
 docutils @ file:///D:/bld/docutils_1602628438656/work
 EasyProcess==0.3
@@ -44,6 +46,7 @@ future==0.18.2
 gast @ file:///home/conda/feedstock_root/build_artifacts/gast_1596839682936/work
 google-pasta==0.2.0
 grpcio @ file:///D:/bld/grpcio_1596715850903/work
+gunicorn==20.0.4
 h5py @ file:///D:/bld/h5py_1595110299148/work
 hyperlink==20.0.1
 idna @ file:///tmp/build/80754af9/idna_1593446292537/work
@@ -59,20 +62,12 @@ jedi @ file:///C:/ci/jedi_1592833832328/work
 Jinja2==2.11.2
 joblib @ file:///tmp/build/80754af9/joblib_1594236160679/work
 jsonschema @ file:///C:/ci/jsonschema_1594363671836/work
-jupyter-client @ file:///tmp/build/80754af9/jupyter_client_1594826976318/work
-jupyter-core==4.6.3
-Keras==2.3.1
-Keras-Applications==1.0.8
-Keras-Preprocessing==1.1.0
 keyring @ file:///C:/ci/keyring_1601488971022/work
-Kivy @ file:///D:/bld/kivy_1605197703189/work
-kiwisolver==1.2.0
 lazy-object-proxy==1.4.3
 lxml @ file:///C:/ci/lxml_1594826938446/work
 Mako @ file:///home/conda/feedstock_root/build_artifacts/mako_1595925083607/work
 Markdown @ file:///home/conda/feedstock_root/build_artifacts/markdown_1589366472132/work
 MarkupSafe==1.1.1
-matplotlib @ file:///C:/ci/matplotlib-base_1592846084747/work
 mccabe==0.6.1
 mistune @ file:///C:/ci/mistune_1594373272338/work
 mkl-service==2.3.0
@@ -81,8 +76,6 @@ mss==6.1.0
 nbconvert @ file:///C:/ci/nbconvert_1594372737468/work
 nbformat==5.0.7
 notebook @ file:///C:/ci/notebook_1596837179121/work
-numpy @ file:///D:/bld/numpy_1595523078866/work
-numpydoc @ file:///tmp/build/80754af9/numpydoc_1605117425582/work
 olefile @ file:///home/conda/feedstock_root/build_artifacts/olefile_1602866521163/work
 packaging==20.4
 pandas @ file:///C:/ci/pandas_1596824386248/work
@@ -100,6 +93,7 @@ prometheus-client==0.8.0
 prompt-toolkit==3.0.5
 protobuf==3.12.4
 psutil @ file:///C:/ci/psutil_1598352273540/work
+psycopg2==2.8.6
 ptyprocess @ file:///tmp/build/80754af9/ptyprocess_1605560620615/work/dist/ptyprocess-0.6.0-py2.py3-none-any.whl
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
@@ -158,13 +152,8 @@ sphinxcontrib-devhelp==1.0.2
 sphinxcontrib-htmlhelp==1.0.3
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
-sphinxcontrib-serializinghtml==1.1.4
-spyder @ file:///C:/ci/spyder_1599052032150/work
-spyder-kernels @ file:///C:/ci/spyder-kernels_1599051798778/work
+sphinxcontrib-serializinghtml==1.1.4s
 sqlparse==0.3.1
-tensorboard==1.14.0
-tensorflow @ file:///D:/bld/tensorflow_1594833538462/work/tensorflow-1.14.0-cp37-cp37m-win_amd64.whl
-tensorflow-estimator==1.14.0
 termcolor==1.1.0
 terminado==0.8.3
 testpath==0.4.4
@@ -183,6 +172,7 @@ watchdog @ file:///C:/ci/watchdog_1593446515400/work
 wcwidth @ file:///tmp/build/80754af9/wcwidth_1593447189090/work
 webencodings==0.5.1
 Werkzeug==1.0.1
+whitenoise==5.2.0
 win-inet-pton==1.1.0
 wincertstore==0.2
 wrapt==1.11.2
