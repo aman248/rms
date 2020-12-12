@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'storage/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'storage:ufile' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'storage:register' %}">Sign up</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section class="content">
+        {% if messages %}
+        {% for message in messages %}
+        <p class="message"><strong>{{ message }}</strong></p>
+        {% endfor %}
+        {% endif %}
+        <h1>School login</h1>
+        <form method="POST" action="{% url 'storage:login' %}">
+            {% csrf_token %}
+            <label for="name">Name</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password"><br>
+            <input type="submit">
+        </form>
+
+        <p>
+            for example use Name = user1 and password = Asdfg#12h
+        </p>
+    </section>
+</body>
+</html>

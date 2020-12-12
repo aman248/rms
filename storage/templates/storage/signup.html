@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'storage/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'storage:ufile' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'storage:login' %}">Login</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section class="content">
+        <h1>Sign Up</h1>
+        <form method="POST" action="{% url 'storage:register' %}">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit">
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        </form>
+
+        
+    </section>
+</body>
+</html>

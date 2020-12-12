@@ -1,4 +1,45 @@
-{% for data in datas%}
-{{ data.subject.name }}
-{{ data.value}}
-{% endfor %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'storage/styles.css' %} ">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'storage:ufile' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'storage:result' %}">find your result</a>
+                </li>
+                <li>
+                    <a href="{% url 'storage:ufile' %}">How it works.</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section class="content">
+        <h1>Result</h1>
+        <table id="customers">
+            <tr>
+                <td>Name</td>
+                <td>{{datas.0.student.name}}</td>
+            </tr>
+            {% for data in datas%}
+            <tr>
+                <td>{{data.subject.name}}</td>
+                <td>{{data.value}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+
+
+    
+</body>
+</html>

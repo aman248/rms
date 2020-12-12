@@ -1,7 +1,52 @@
-<form method="POST" action="{% url 'storage:result' %}">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit">
-    
-    
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'storage/styles.css' %} ">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'storage:ufile' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'storage:result' %}">find your result</a>
+                </li>
+                <li>
+                    <a href="{% url 'storage:ufile' %}#how_it_works">How it works</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section class="content">
+        {% if messages %}
+        {% for message in messages %}
+        <h3 class="message">{{ message }}</h3>
+        {% endfor %}
+        {% endif %}
+        <h1>Fill in the details</h1>
+        <form method="POST" action="{% url 'storage:result' %}">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} <br>
+            {{ field }}<br>
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+            </div>
+            {% endfor %}
+            <input type="submit">
+        </form>
+        <p>
+            for example use rollno = 3, testname = test2, schoolname = user1
+        </p>
+    </section>
+</body>
+</html>

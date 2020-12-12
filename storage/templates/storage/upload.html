@@ -5,36 +5,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload file</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'storage/styles.css' %}">
 </head>
-<body>
+<body style="background-image: url('{% static 'storage/3.jpg' %}');">
     <header>
+        <h1 id="rms_title">RMS</h1>
         <nav>
-            <ul>
-                <li>
-                    <a href={% url 'storage:result' %}>find your result</a>
+            <ul id="nav_lis">
+                {% if not user.is_authenticated %}
+                <li class="nav_item">
+                    <a href="{% url 'storage:login' %}">LOGIN</a>
                 </li>
-                <li>
-                    <a href="#how_it_works">How it works.</a>
+                {% endif %}
+                <li class="nav_item">
+                    <a href="{% url 'storage:result' %}">FIND YOUR RESULT</a>
+                </li>
+                <li class="nav_item">
+                    <a href="#how_it_works">HOW IT WORKS</a>
                 </li>
             </ul>
         </nav>
     </header>
-    <div>
-        <form action={% url 'storage:ufile' %} enctype="multipart/form-data" method="post" > 
+    <div class="content">
+        {% if messages %}
+        {% for message in messages %}
+        <p class="message"><strong>{{ message }}</strong></p>
+        {% endfor %}
+        {% endif %}
+        {% if user.is_authenticated %}
+        <h2>Upload Result File</h2>
+        <form action="{% url 'storage:ufile' %}" enctype="multipart/form-data" method="post" > 
             {% csrf_token %}
-            {{ form }}
+            {% for field in form %}
+            <div class="fieldWrapper">
+            {{ field.errors }}
+            {{ field.label_tag }} <br>
+            {{ field }}
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+            </div>
+            {% endfor %}
             <input type="submit">
         </form>
+        {% endif %}
     </div>
-    <div id="how_it_works">
-        <p>upload result as a .xls file. 
-        <strong>important:</strong>
-        Student and rollno these two columns must be present in the file.</p>
-        <img src="{% static 'storage/1.png' %}" alt="screenshot of excel with Student and rollno highlighted.">
-
-
-
+    <div id="how_it_works" class="content">
+        <h2>How It Works</h2>
+        <div id="step1">
+            <h2>Step 1:</h2>
+            <p>
+                <a href="{% url 'storage:login' %}">login</a> first if you want to publish a result 
+                else view your result <a href="{% url 'storage:result' %}">here</a>
+            </p>
+        </div>
+        <div id="step2">
+            <h2>Step 2:</h2>
+            <p>
+                upload result as a .xls file. 
+                Your username will be stored as the name of school which is used by students to view result.
+                <strong>important:</strong>
+                Student and rollno these two columns must be present in the file.
+            </p>
+            <img src="{% static 'storage/1.png' %}" alt="screenshot of excel with Student and rollno highlighted.">
+        </div>
     </div>
-    
+    <footer>
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'storage:logout' %}">logout</a></li>
+            {% endif %}
+            
+        </ul>
+    </footer>
 </body>
 </html>
