@@ -11,16 +11,12 @@ from django.contrib import messages
 
 def upload_file(request):
     if request.method == 'POST':
-        print('i am post bitch #####################################')
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            print('i am valid bitch ****************************')
-            print(Student)
             handle_uploaded_file(request.FILES['file'],form.cleaned_data['test_name'],School.objects.filter(name=request.user.username)[0])
             return redirect('storage:result')
     else:
         form = UploadFileForm()
-        print('this @@@@@@@@@@@@',request.user.username)
     return render(request, 'storage/upload.html', {'form': form})
 def handle_uploaded_file(f,name_given,skool):
     df = pandas.read_excel(f)
@@ -32,7 +28,6 @@ def handle_uploaded_file(f,name_given,skool):
         s = Subject(name = i)
         s.save()
     e = Exam(name=name_given)
-    print('exam is created with id ',e.pk)
     e.save()
     for index,row in df.iterrows():
         s = Student(
@@ -40,7 +35,6 @@ def handle_uploaded_file(f,name_given,skool):
             rollno = row['rollno'],
             school = skool
             )
-        print('student is created with id ',s.pk)
         s.save()
         for i in ls:
             m = Marks(
@@ -50,18 +44,14 @@ def handle_uploaded_file(f,name_given,skool):
                 value=row[i],
                 exam=e
                 )
-            print('mark is created with id ',m.pk)
             m.save()
 
 def result(request):
     if request.method == 'POST':
         form = ShowResultForm(request.POST)
-        print('*******************point3')
         if form.is_valid():
-            print('$$$$$$$$$$$$$$$point1')
             data = get_data_or_false(form)
             if data:
-                print('&&&&&&&&&&&&&&&&&&&&point2')
                 return render(request,'storage/data.html',{'datas':data})
             else:
                 messages.info(request,'No record Found')
